@@ -79,6 +79,7 @@ html[data-theme="crimson"] {
 
 body.embedded {
   --bg-primary: transparent;
+  --bg-secondary: transparent;
 }
 
 /* TODO: fix enchantment results variable name, misnomer */
