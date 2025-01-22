@@ -30,6 +30,15 @@ const languages = {
 
 const languages_cache_key = 6;
 
+
+function isEmbedded() {
+    try {
+        return window.self !== window.top;
+    } catch {
+        return true;
+    }
+}
+
 window.onload = function() {
 
     worker = new Worker("work.js?6");
@@ -42,6 +51,29 @@ window.onload = function() {
         msg: "set_data",
         data: data
     });
+
+    if (isEmbedded()) {
+        document.body.classList.add('embedded');
+        // this is not optimal, but it's the only way unless we fork theme-switcher
+        const theme = new URLSearchParams(location.search).get('theme');
+        if (theme) {
+            localStorage.setItem('tswitch-theme', theme)
+        }
+
+        const observer = new ResizeObserver(() => {
+            window.parent.postMessage(
+            {
+                type: 'height-change',
+                height: document.body.scrollHeight + 10,
+            },
+            '*'
+            )
+        })
+
+        for (const child of document.body.children) {
+            observer.observe(child)
+        }
+    }
 
     buildItemSelection();
     buildEnchantmentSelection();
@@ -683,21 +715,29 @@ async function setupLanguage(){
 }
 
 function defineBrowserLanguage(){
-    if (!localStorage.getItem("savedlanguage")) {
-        // language isn't saved and has to be detected
-        const browserLanguage = navigator.language || navigator.userLanguage;
-        if (languages[browserLanguage]){
-            changePageLanguage(browserLanguage);
-        } else {
-            changePageLanguage('en');
-        }
-    } else {
+    if (localStorage.getItem("savedlanguage")) {
         // language is saved, load from save
-        changePageLanguage(localStorage.getItem("savedlanguage"));
+        return changePageLanguage(localStorage.getItem('savedlanguage'));
+    }
+
+    if (new URLSearchParams(location.search).has('lang')) {
+        // language is set in the URL
+        const urlLanguage = new URLSearchParams(location.search).get('lang');
+        if (languages[urlLanguage]) {
+            return changePageLanguage(urlLanguage);
+        }
+    }
+
+    // language isn't saved and has to be detected
+    const browserLanguage = navigator.language || navigator.userLanguage;
+    if (languages[browserLanguage]) {
+        return changePageLanguage(browserLanguage);
+    } else {
+        return changePageLanguage('en');
     }
 }
 
-async function changePageLanguage(language){
+async function changePageLanguage(language, saveToLocalStorage = true){
     if (!languages[language]){
         console.error("Trying to switch to unknown language:", language);
         return;
@@ -707,8 +747,10 @@ async function changePageLanguage(language){
     languageJson = await loadJsonLanguage(language).then(languageData => { return languageData});
     if (languageJson){
         changeLanguageByJson(languageJson);
-        localStorage.setItem("savedlanguage", language);
-        // ^ Save language choice to localstorage
+        if (saveToLocalStorage) {
+            localStorage.setItem("savedlanguage", language)
+            // ^ Save language choice to localstorage
+        }
     }
 }
 

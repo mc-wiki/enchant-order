@@ -77,6 +77,10 @@ html[data-theme="crimson"] {
   --solution: var(--enchantment-results);
 }
 
+body.embedded {
+  --bg-primary: transparent;
+}
+
 /* TODO: fix enchantment results variable name, misnomer */
 
 .selectItem:focus, .selectLanguage:focus {
@@ -324,12 +328,30 @@ a:hover {
   outline: 2px solid var(--fg-primary);
 }
 
+/* When used in iframe */
+body.embedded #theme-switcher-form,
+body.embedded header :not(h1) {
+  display: none;
+}
+
+body.embedded h1 {
+  font-size: 18px;
+}
+
+body.embedded .inner {
+  margin: 0;
+  padding: 0;
+}
+
+body.embedded .footer {
+  font-size: 14px;
+}
 
 @media only screen and (max-width: 422px) {
   .footer {
     text-align: center
   }
-  
+
   .footer * {
     margin-right: auto;
     margin-left: auto;
@@ -354,7 +376,7 @@ a:hover {
     margin-top: 13px;
     margin-left: 12px;
   }
-  
+
   /*#theme-switcher-form {
     width: 90px;
   }*/

@@ -4,45 +4,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-        <script src="data.js?10"></script>
-        <script src="script.js?15"></script>
-        <link rel="stylesheet" type="text/css" href="style.css?3">
+        <script src="data.js?11"></script>
+        <script src="script.js?16"></script>
+        <link rel="stylesheet" type="text/css" href="style.css?4">
         <script src="https://unpkg.com/@hungrybluedev/theme-switcher@latest/dist/switch.js" type="module" defer></script>
     </head>
     <body>
 
         <div class="inner">
-            
-            <div class="top-container">
+
+            <header>
+                <div class="top-container">
+                    <p>
+                        <label for="language"></label>
+                        <select id="language" class="selectLanguage">
+                            <option value="">Choose a language</option>
+                        </select>
+                    </p>
+
+                </div>
+
+                <h1>Minecraft Enchantment Ordering Tool</h1>
+
                 <p>
-                    <label for="language"></label>
-                    <select id="language" class="selectLanguage">
-                        <option value="">Choose a language</option>
-                    </select>
+                    When enchanting items in Minecraft, the order in which you combine armor, weapons and tools with books in your
+                    anvil makes a huge difference. Each time you work on an anvil, you increase the <a href="https://minecraft.wiki/w/Anvil_mechanics">work penalty</a> for future workings. Once that
+                    penalty gets too high, you simply can't add any more enchantments and the anvil says "Too Expensive!". This tool
+                    helps you plan the optimal order of combining and applying books, to give you the cheapest possible cost.
                 </p>
-                
-            </div>
-            
-            <h1>Minecraft Enchantment Ordering Tool</h1>
+                <p>
+                    This tool assume your gear and books start with zero "work penalty". That means you have not previously combined
+                    the books (e.g. to turn two level 1 books into a single level 2 book) or worked the items or books in an anvil
+                    in any way. To create gear with the maximum possible enchantment, you cannot combine lower-level books and must
+                    start with high-level books from villager trading.
+                </p>
+                <p>
+                    Allowing incompatible enchantments may be useful for combining protection-type enchantments (1.14 to 1.14.3pre-1)
+                    and mending/infinity (1.9 to 1.11.1).
+                </p>
 
-            <p>
-                When enchanting items in Minecraft, the order in which you combine armor, weapons and tools with books in your
-                anvil makes a huge difference. Each time you work on an anvil, you increase the <a href="https://minecraft.wiki/w/Anvil_mechanics">work penalty</a> for future workings. Once that
-                penalty gets too high, you simply can't add any more enchantments and the anvil says "Too Expensive!". This tool
-                helps you plan the optimal order of combining and applying books, to give you the cheapest possible cost.
-            </p>
-            <p>
-                This tool assume your gear and books start with zero "work penalty". That means you have not previously combined
-                the books (e.g. to turn two level 1 books into a single level 2 book) or worked the items or books in an anvil
-                in any way. To create gear with the maximum possible enchantment, you cannot combine lower-level books and must
-                start with high-level books from villager trading.
-            </p>
-            <p>
-                Allowing incompatible enchantments may be useful for combining protection-type enchantments (1.14 to 1.14.3pre-1)
-                and mending/infinity (1.9 to 1.11.1).
-            </p>
-
-            <hr>
+                <hr>
+            </header>
 
             <div id="left">
 
