@@ -79,7 +79,6 @@ html[data-theme="crimson"] {
 
 body.embedded {
   --bg-primary: transparent;
-  --bg-secondary: transparent;
 }
 
 /* TODO: fix enchantment results variable name, misnomer */
@@ -231,6 +230,10 @@ a:hover {
     padding-right: 20px;
     box-sizing: border-box;
     text-align: right;
+}
+
+body.embedded .footer {
+  background: transparent;
 }
 
 .icon {
