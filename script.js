@@ -715,17 +715,18 @@ async function setupLanguage(){
 }
 
 function defineBrowserLanguage(){
-    if (localStorage.getItem("savedlanguage")) {
-        // language is saved, load from save
-        return changePageLanguage(localStorage.getItem('savedlanguage'));
-    }
-
     if (new URLSearchParams(location.search).has('lang')) {
         // language is set in the URL
         const urlLanguage = new URLSearchParams(location.search).get('lang');
         if (languages[urlLanguage]) {
             return changePageLanguage(urlLanguage);
         }
+    }
+
+
+    if (localStorage.getItem("savedlanguage")) {
+        // language is saved, load from save
+        return changePageLanguage(localStorage.getItem('savedlanguage'));
     }
 
     // language isn't saved and has to be detected
