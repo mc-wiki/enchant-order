@@ -19,13 +19,16 @@ const languages = {
     'nl'    : 'Nederlands',
     'pl-PL' : 'Polski',
     'pt-BR' : 'Português',
+    'vi-VN' : 'Tiếng Việt',
     'tr-TR' : 'Türkçe',
     'be-BY' : 'Беларуская',
     'ru-RU' : 'Русский',
     'ua-UA' : 'Українська',
+    'th-TH' : 'ภาษาไทย',
     'zh-CN' : '中文',
     'ja-JP' : '日本語',
-    'vi-VN' : 'Tiếng Việt',
+    'ko-KR' : '한국어',
+
 };
 
 const languages_cache_key = 6;
@@ -304,7 +307,7 @@ function displayLevelsText(levels) {
 
 function pluralize(num, key_root) {
 
-    if (languageJson.use_russain_plurals) {
+    if (languageJson.use_russian_plurals) {
       if ((num % 10 === 1) && (num < 10 || num > 15)) {
         return String(num) + languageJson[key_root];
       } else if ((num % 10 === 2 || num % 10 === 3 || num % 10 === 4) && (num < 10 || num > 15)) {

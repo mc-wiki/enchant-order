@@ -17,13 +17,15 @@ const languages = {
     'nl'    : 'Nederlands',
     'pl-PL' : 'Polski',
     'pt-BR' : 'Português',
+    'vi-VN' : 'Tiếng Việt',
     'tr-TR' : 'Türkçe',
     'be-BY' : 'Беларуская',
     'ru-RU' : 'Русский',
     'ua-UA' : 'Українська',
+    'th-TH' : 'ภาษาไทย',
     'zh-CN' : '中文',
     'ja-JP' : '日本語',
-    'vi-VN' : 'Tiếng Việt',
+    'ko-KR' : '한국어',
 };
 
 const special_space_handling = {
@@ -31,7 +33,7 @@ const special_space_handling = {
 };
 
 var unpack_keys = ['items', 'enchants'];
-var skip_keys = ['use_russain_plurals'];
+var skip_keys = ['use_russian_plurals'];
 var dicts = {};
 var keys = {};
 
@@ -100,8 +102,8 @@ async function loadLangs(){
 
 			// should we skip this string?
 			var skip_cell = false;
-			if (key.match(/_(s)$/) && dicts[lang_id].use_russain_plurals) skip_cell = true;
-			if (key.match(/_(low|high)$/) && !dicts[lang_id].use_russain_plurals) skip_cell = true;
+			if (key.match(/_(s)$/) && dicts[lang_id].use_russian_plurals) skip_cell = true;
+			if (key.match(/_(low|high)$/) && !dicts[lang_id].use_russian_plurals) skip_cell = true;
 
 			if (skip_cell){
 
